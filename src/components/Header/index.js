@@ -1,21 +1,26 @@
 import React from 'react';
-import logo from '../../assets/logo.svg'; 
-import './style.css'; 
-import { Link } from 'react-router-dom'; 
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import logo from '../../assets/logo.svg';
+import './style.css'
 
-export default function Home() {
-  return (
-    <header className="container">
-      <Link to="/">
-        <img className="logo" src={logo} alt="Logo do Projeto" />
-      </Link>
+export default function Header() {
+  const reserveSize = useSelector(state => state.reserve.length);
 
-      <Link className="reservas" to="/reservas">
-        <div>
-            <strong>Minhas Reservas</strong>
-            <span> 0 Reservas </span>
-        </div>  
-    </Link>
-    </header>
-  )
+ return (
+   <header className="container">
+
+     <Link to="/">
+      <img className="logo" src={logo} alt="Logo Projeto" />
+     </Link>
+
+     <Link  className="reserva" to="/reservas">
+       <div>
+         <strong>Minhas reservas</strong>
+         <span>{reserveSize} reservas</span>
+       </div>
+     </Link>
+
+   </header>
+ );
 }
